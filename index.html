@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ركن نيكوتشا</title>
+<meta name="description" content="ركن نيكوتشا: صفحة خاصة لعملاء نيكوتشا ماتشا، فيها طريقة تحضير كل صنف، موعد انتهاء العلبة، وأختام القطة.">
+<meta name="theme-color" content="#de99ac">
+<link rel="icon" href="assets/logo.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Baloo+Bhaijaan+2:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Layout: one phone-first column; a soft "matcha tin" card stack for the customer, a ledger-style panel for the owner */
+:root{
+  /* NEKOTCHA identity: store pink #de99ac on white, matcha green as the second voice */
+  --bg:#ffffff; --surface:#ffffff; --sunk:#fbeef2; --ink:#1f1a1c; --sun:#e8ad4c; --sun-soft:#fcf1dc; --muted:#8c7179;
+  --pink:#de99ac; --pink-deep:#c97a91; --matcha:#6f8f4e; --matcha-soft:#eef4e6;
+  --line:#f3dde4; --warn:#c7782f; --warn-soft:#fbead8; --ok:#5d8a45; --ok-soft:#e3efd9;
+  --display:"Baloo Bhaijaan 2","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  --mark:"Fredoka","Baloo Bhaijaan 2",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;direction:rtl}
+.wrap{max-width:720px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.25;text-wrap:balance}
+h1{font-size:2rem;font-weight:800}
+h2{font-size:1.3rem;font-weight:700}
+p{margin:0}
+.muted{color:var(--muted)}
+.demo-flag{align-self:flex-start;font-size:.78rem;background:var(--sunk);color:var(--muted);padding:3px 10px;border-radius:99px;letter-spacing:.02em}
+header.brand{display:flex;align-items:center;gap:14px;background:var(--pink);border-radius:20px;padding:10px 14px}
+.mark{display:flex;flex-direction:column;min-width:0}
+.mark span{font-family:var(--mark);font-weight:600;font-size:1.45rem;letter-spacing:.06em;color:#3b2b31;line-height:1.1;text-align:right}
+.mark small{color:#3b2b31;font-size:.82rem;opacity:.85}
+.logo{width:72px;height:72px;flex:none;border-radius:16px}
+.switch{display:grid;grid-template-columns:1fr 1fr;background:var(--sunk);border-radius:14px;padding:4px;gap:4px}
+.switch button{border:0;background:transparent;font:600 .95rem var(--body);color:var(--muted);padding:10px;border-radius:10px;cursor:pointer}
+.switch button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--pink-deep);outline-offset:2px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.greet{background:var(--sun-soft);border:0}
+.greet h2{color:var(--ink)}
+.greet .order{font-variant-numeric:tabular-nums;opacity:.8;font-size:.9rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 .9rem var(--body);padding:7px 14px;border-radius:99px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--pink);border-color:var(--pink);color:#3b2b31}
+.label{font-size:.8rem;color:var(--muted);letter-spacing:.03em}
+.recipe{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.recipe div{background:var(--matcha-soft);border-radius:12px;padding:10px 4px}
+.recipe b{display:block;font-family:var(--display);font-size:1.5rem;color:var(--matcha);font-variant-numeric:tabular-nums;line-height:1.2}
+.recipe span{font-size:.8rem;color:var(--muted)}
+ol.steps{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px}
+.timer{display:flex;align-items:center;gap:14px;background:var(--sunk);border-radius:14px;padding:12px 14px}
+.timer .t{font-family:var(--display);font-size:2rem;font-variant-numeric:tabular-nums;min-width:70px}
+.btn{border:0;font:600 .95rem var(--body);padding:10px 18px;border-radius:12px;cursor:pointer;background:var(--pink);color:#3b2b31}
+.btn:hover{background:var(--pink-deep);color:#fff}
+.btn.ghost{background:transparent;color:var(--pink-deep);border:1.5px solid var(--pink-deep)}
+a.btn{text-decoration:none;display:inline-block;text-align:center}
+.bar{height:12px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--matcha);border-radius:99px;transition:width .4s}
+input[type=range]{width:100%;accent-color:var(--matcha)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.big{font-family:var(--display);font-size:1.6rem;font-variant-numeric:tabular-nums}
+.paws{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.paw{aspect-ratio:1;max-width:100%;border-radius:50%;border:2px dashed var(--line);display:grid;place-items:center}
+.paw.on{border:0;background:var(--sun)}
+.paw svg{width:58%;height:58%}
+.paw.on svg{fill:#1f1a1c}.paw:not(.on) svg{fill:var(--line)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat b{font-family:var(--display);font-size:1.7rem;display:block;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat.alert b{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th{text-align:right;font-weight:500;color:var(--muted);font-size:.78rem;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;vertical-align:middle}
+.pill{font-size:.78rem;padding:2px 10px;border-radius:99px;white-space:nowrap}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.small-btn{border:1px solid var(--pink-deep);background:transparent;color:var(--pink-deep);font:500 .8rem var(--body);padding:4px 10px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.prod{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.prod:last-child{border-bottom:0}
+form.add{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:8px}
+form.add input{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:0}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;max-width:min(92vw,460px);font-size:.9rem;z-index:20}
+@media (max-width:520px){h1{font-size:1.6rem}.stats{grid-template-columns:1fr 1fr 1fr}.stat b{font-size:1.35rem}form.add{grid-template-columns:1fr 1fr}form.add input:first-child{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="brand">
+    <img class="logo" src="assets/logo.webp" alt="شعار نيكوتشا ماتشا">
+    <div class="mark"><span dir="ltr">NEKOTCHA MATCHA</span><small>من المزارع الصينية واليابانية، إلى قلب نجد 💚</small></div>
+  </header>
+  <div>
+    <h1>ركن نيكوتشا 🍵🐈</h1>
+    <p class="muted">صفحة خاصة لعملاء نيكوتشا ماتشا</p>
+  </div>
+  <span class="demo-flag">نسخة تجريبية · كل الأسماء والأرقام أمثلة</span>
+
+  <div class="switch" role="tablist">
+    <button role="tab" id="tab-customer" aria-selected="true" data-view="customer">صفحة العميل</button>
+    <button role="tab" id="tab-owner" aria-selected="false" data-view="owner">لوحة صاحب المتجر</button>
+  </div>
+
+  <!-- CUSTOMER -->
+  <section id="customer" class="wrapless" style="display:flex;flex-direction:column;gap:18px">
+    <div class="panel greet">
+      <span class="order">طلب رقم ‎#NK-1042‎</span>
+      <h2>أهلاً سارة 🐾 وصلتك الماتشا!</h2>
+      <p>مسحتِ البطاقة اللي داخل طلبك. هنا تلقين طريقة تحضير صنفك، ومتى تخلص علبتك، وأختامك.</p>
+    </div>
+
+    <div class="panel">
+      <h2>حضّري كوبك</h2>
+      <div><div class="label">الصنف اللي اشتريتيه</div><div class="chips" id="prodChips"></div></div>
+      <div><div class="label">كيف تبينها؟</div><div class="chips" id="styleChips"></div></div>
+      <div class="recipe" id="recipe"></div>
+      <ol class="steps" id="steps"></ol>
+      <div class="timer">
+        <span class="t" id="tDisplay">0:30</span>
+        <div style="flex:1"><div class="label">مؤقّت الخفق</div><p class="muted" style="font-size:.85rem">اخفقي على شكل حرف M حتى تطلع رغوة ناعمة</p></div>
+        <button class="btn" id="tBtn">ابدئي</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>متى تخلص علبتك؟</h2>
+      <div class="row"><span class="label">كم كوب تشربين بالأسبوع؟</span><b class="big" id="cupsOut">5</b></div>
+      <input type="range" id="cups" min="1" max="14" value="5" aria-label="عدد الأكواب في الأسبوع">
+      <div class="bar"><i id="tinBar"></i></div>
+      <div class="row"><span class="muted" id="tinLeft"></span><span id="tinDate" style="font-weight:600"></span></div>
+      <a class="btn" href="https://salla.sa/NEKOTCHA" target="_blank" rel="noopener">اطلبي علبتك الجاية من المتجر</a>
+    </div>
+
+    <div class="panel">
+      <div class="row"><h2>أختام القطة</h2><span class="muted">٣ من ٦</span></div>
+      <div class="paws" id="paws"></div>
+      <p class="muted">باقي ٣ طلبات وتوصلك علبة ٣٠ جرام هدية مع طلبك السادس.</p>
+    </div>
+  </section>
+
+  <!-- OWNER -->
+  <section id="owner" hidden style="flex-direction:column;gap:18px">
+    <div class="stats">
+      <div class="stat"><span class="label">العملاء</span><b>48</b></div>
+      <div class="stat"><span class="label">طلبات أكتوبر</span><b>73</b></div>
+      <div class="stat alert"><span class="label">علب قربت تخلص</span><b id="lowCount">0</b></div>
+    </div>
+
+    <div class="panel">
+      <div class="row"><h2>العملاء</h2><span class="muted" style="font-size:.85rem">مرتّبين حسب أقرب علبة تخلص</span></div>
+      <div class="tbl"><table>
+        <thead><tr><th>العميل</th><th>آخر صنف</th><th>الأختام</th><th>العلبة تخلص بعد</th><th></th></tr></thead>
+        <tbody id="custRows"></tbody>
+      </table></div>
+    </div>
+
+    <div class="panel">
+      <h2>الأصناف وطريقة تحضيرها</h2>
+      <p class="muted" style="font-size:.9rem">أي صنف تضيفه هنا يظهر مباشرة في صفحة العميل.</p>
+      <div id="prodList"></div>
+      <form class="add" id="addForm">
+        <input id="newName" placeholder="اسم الصنف" required>
+        <input id="newG" type="number" min="1" max="5" step="0.5" placeholder="جرام" required>
+        <input id="newT" type="number" min="60" max="90" placeholder="الحرارة °" required>
+        <button class="btn" type="submit">أضف</button>
+      </form>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const products=[
+  {name:"خفيفة المرارة",g:2,temp:75},
+  {name:"مطحونة بالحجر",g:2,temp:80},
+  {name:"صنف يابوكيتا",g:1.5,temp:75},
+  {name:"سريعة التحضير",g:2,temp:80},
+  {name:"جودة قوية",g:2.5,temp:80}
+];
+const styles={
+  "ساخنة":{water:70,milk:0,steps:(p)=>[`انخلي ${p.g} جرام ماتشا في الكوب عشان ما تتكتّل`,`أضيفي 70 مل ماء على ${p.temp}° (لا تستخدمين ماء مغلي)`,"اخفقي ٣٠ ثانية حتى تطلع رغوة","اشربيها مباشرة 🍵"]},
+  "مثلجة":{water:60,milk:0,steps:(p)=>[`انخلي ${p.g} جرام ماتشا`,`أضيفي 60 مل ماء على ${p.temp}° واخفقي ٣٠ ثانية`,"عبّي كوب طويل ثلج وصبّي الماتشا فوقه","حرّكي وأضيفي شوي ماء بارد إذا تبينها أخف"]},
+  "لاتيه":{water:30,milk:180,steps:(p)=>[`انخلي ${p.g} جرام ماتشا`,`أضيفي 30 مل ماء على ${p.temp}° واخفقي ٣٠ ثانية`,"سخّني 180 مل حليب واخفقيه رغوة","صبّي الحليب فوق الماتشا، وحلّيها إذا تحبين"]}
+};
+let prod=0, style="لاتيه";
+const $=s=>document.querySelector(s);
+const toAr=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+
+function chips(el,items,cur,on){
+  el.innerHTML="";
+  items.forEach((t,i)=>{const b=document.createElement("button");b.className="chip";b.textContent=t;b.setAttribute("aria-pressed",String(i===cur||t===cur));b.onclick=()=>on(i,t);el.appendChild(b);});
+}
+function renderRecipe(){
+  chips($("#prodChips"),products.map(p=>p.name),prod,i=>{prod=i;renderRecipe();renderTin();});
+  chips($("#styleChips"),Object.keys(styles),style,(i,t)=>{style=t;renderRecipe();});
+  const p=products[prod], s=styles[style];
+  $("#recipe").innerHTML=`<div><b>${p.g}</b><span>جرام ماتشا</span></div><div><b>${s.water}</b><span>مل ماء</span></div><div><b>${s.milk?s.milk:p.temp+"°"}</b><span>${s.milk?"مل حليب":"حرارة الماء"}</span></div>`;
+  $("#steps").innerHTML=s.steps(p).map(x=>`<li>${x}</li>`).join("");
+}
+let tLeft=30,tInt=null;
+$("#tBtn").onclick=()=>{
+  if(tInt){clearInterval(tInt);tInt=null;tLeft=30;$("#tDisplay").textContent="0:30";$("#tBtn").textContent="ابدئي";return;}
+  $("#tBtn").textContent="إيقاف";
+  tInt=setInterval(()=>{tLeft--;$("#tDisplay").textContent="0:"+String(tLeft).padStart(2,"0");
+    if(tLeft<=0){clearInterval(tInt);tInt=null;tLeft=30;$("#tDisplay").textContent="جاهزة";$("#tBtn").textContent="مرة ثانية";}},1000);
+};
+// tin: 30g, ordered 12 days ago
+function renderTin(){
+  const cups=+$("#cups").value; $("#cupsOut").textContent=toAr(cups);
+  const g=products[prod].g, used=cups/7*12*g, left=Math.max(0,30-used);
+  const days=Math.round(left/(cups/7*g));
+  $("#tinBar").style.width=(left/30*100)+"%";
+  $("#tinLeft").textContent=`باقي تقريباً ${toAr(Math.round(left))} جرام`;
+  const d=new Date(); d.setDate(d.getDate()+days);
+  $("#tinDate").textContent=days<=0?"خلصت علبتك 😿":`تخلص حوالي ${d.toLocaleDateString("ar-SA-u-ca-gregory",{day:"numeric",month:"long"})}`;
+}
+$("#cups").oninput=renderTin;
+const pawSvg='<svg viewBox="0 0 24 24"><circle cx="6" cy="9" r="2.4"/><circle cx="10" cy="5" r="2.4"/><circle cx="14" cy="5" r="2.4"/><circle cx="18" cy="9" r="2.4"/><path d="M12 10c-3 0-6 4-6 7 0 2 2 3 3.5 2.5S11 19 12 19s1 0 2.5.5S18 19 18 17c0-3-3-7-6-7z"/></svg>';
+$("#paws").innerHTML=Array.from({length:6},(_,i)=>`<div class="paw ${i<3?"on":""}">${pawSvg}</div>`).join("");
+
+// owner
+const customers=[
+  {n:"ريم",p:"خفيفة المرارة",s:5,d:2},{n:"عبدالله",p:"جودة قوية",s:2,d:4},
+  {n:"نوف",p:"صنف يابوكيتا",s:4,d:6},{n:"سارة",p:"مطحونة بالحجر",s:3,d:16},
+  {n:"لمى",p:"سريعة التحضير",s:1,d:21},{n:"فيصل",p:"جودة قوية",s:6,d:27}
+];
+function renderOwner(){
+  customers.sort((a,b)=>a.d-b.d);
+  $("#lowCount").textContent=toAr(customers.filter(c=>c.d<=7).length);
+  $("#custRows").innerHTML=customers.map((c,i)=>`<tr><td><b>${c.n}</b></td><td>${c.p}</td><td>${toAr(c.s)} / ٦${c.s>=6?" 🎁":""}</td>
+    <td><span class="pill ${c.d<=7?"warn":"ok"}">${toAr(c.d)} أيام</span></td>
+    <td>${c.d<=7?`<button class="small-btn" data-i="${i}">جهّز عرض</button>`:""}</td></tr>`).join("");
+  document.querySelectorAll("#custRows .small-btn").forEach(b=>b.onclick=()=>{
+    const c=customers[b.dataset.i];
+    const msg=`هلا ${c.n} 🐈 علبة «${c.p}» قرّبت تخلص! اطلبيها هالأسبوع وخذي خصم ١٠٪ بكود NEKO10 🍵`;
+    const done=()=>toast("انسخت الرسالة، الصقها في واتساب العميل");
+    try{navigator.clipboard.writeText(msg).then(done,()=>toast(msg));}catch(e){toast(msg);}
+  });
+  $("#prodList").innerHTML=products.map(p=>`<div class="prod"><b>${p.name}</b><span class="muted">${p.g} جرام · ${p.temp}°</span></div>`).join("");
+}
+$("#addForm").onsubmit=e=>{
+  e.preventDefault();
+  products.push({name:$("#newName").value.trim(),g:+$("#newG").value,temp:+$("#newT").value});
+  e.target.reset(); renderOwner(); renderRecipe(); toast("انضاف الصنف، وصار يظهر في صفحة العميل");
+};
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,3500);}
+
+function show(v){
+  $("#customer").hidden=v!=="customer"; $("#owner").hidden=v!=="owner";
+  $("#owner").style.display=v==="owner"?"flex":"";
+  document.querySelectorAll(".switch button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.view===v)));
+}
+document.querySelectorAll(".switch button").forEach(b=>b.onclick=()=>show(b.dataset.view));
+renderRecipe(); renderTin(); renderOwner();
+show(location.hash==="#owner"?"owner":"customer");
+</script>
+
+</body>
+</html>
